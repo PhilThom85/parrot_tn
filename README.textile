@@ -4,6 +4,13 @@ This utility gem enables to translate from local dictionnaries and/or google tra
 
 h2. Installation
 
+Add in Gemfile
+
+gem "parrot_tn", :git => "git://github.com/PhilThom85/parrot_tn.git"
+
 h2. Usage
 
-h2. Parrot syntax
+h3. Command line
+
+h3. Ruby code
+
