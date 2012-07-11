@@ -1,0 +1,6 @@
+google: true
+dicts:
+  fr_en: "foo"
+  en_fr:
+  - "file1"
+  - "file2"

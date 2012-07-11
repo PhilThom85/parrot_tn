@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+# coding: UTF-8
+require 'parrot_tn'
+begin
+  # parrot "texte" fr:en
+  guess = ParrotTn::Guess.new :google => true, :user_agent => false
+  text = ARGV[0]
+  lgsrc, lgdst = ARGV[1].split(':')
+  puts guess.translation text, lgsrc, lgdst
+rescue Exception => e
+  puts e.message
+  exit 1
+end

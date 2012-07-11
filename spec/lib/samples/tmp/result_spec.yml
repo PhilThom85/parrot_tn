@@ -1,0 +1,10 @@
+---
+:fr:
+  account_type:
+    current: Courant
+    cash_in_hand: Encaisse
+    other: Autre
+  misc:
+  - Plan
+  - Voiture
+  zz: 12

@@ -1,0 +1,6 @@
+google: true
+dicts:
+  fr_en: "gen"
+  en_fr:
+  - "gen"
+  - "spe"

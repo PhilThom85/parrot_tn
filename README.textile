@@ -1,0 +1,9 @@
+h1. ParrotTn
+
+This utility gem enables to translate from local dictionnaries and/or google translator
+
+h2. Installation
+
+h2. Usage
+
+h2. Parrot syntax

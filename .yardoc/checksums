@@ -1,0 +1,5 @@
+lib/parrot_tn.rb 27ac7e92985693b00088a586a23dd0be3b0a89ac
+lib/tools/parrot_tn.rb 01c9f2683be614a194b659e4b4dd8a77c1cb4863
+lib/tools/parser_yml.rb 2cec6e8a3f2ce9deff80538b9745963d243360ed
+lib/tools/secure_file.rb 67d773e50ae15639d236881da595fb3fb96a49be
+lib/google/google_translate.rb 62c145d46ff47f45e7709add9a807bad3f4f3620

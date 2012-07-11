@@ -1,0 +1,9 @@
+en:
+  account_type:
+    current: "Current"
+    cash_in_hand: "Cash In Hand"
+    other: "Other"
+  misc:
+  - Plane
+  - Car
+  zz: 12
