@@ -10,7 +10,7 @@ gems.tags
 .yardoc
 **/log/*
 .DS_Store
-**/spec/samples/tmp/*
+**/spec/lib/samples/tmp/*
 yuidoc/output/*
 yuidoc/parsed/*
 yuidoc/**/*.pyc
