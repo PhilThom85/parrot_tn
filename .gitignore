@@ -1,0 +1,16 @@
+*.swp
+**/coverage/
+**/.yardoc/
+**/doc/
+guides/output
+guides/staging
+doc/
+tags
+gems.tags
+.yardoc
+**/log/*
+.DS_Store
+**/spec/samples/tmp/*
+yuidoc/output/*
+yuidoc/parsed/*
+yuidoc/**/*.pyc
