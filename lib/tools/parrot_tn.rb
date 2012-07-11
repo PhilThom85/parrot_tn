@@ -21,19 +21,13 @@ module ParrotTn
     #   - :strict : true/(false), if true does not return prefix "NT -" into result string
     #   - :dicts  : Hash that contains the list of file dictionnaries
     #   - :load   : String path to a config file
+    #   - :user_agent   : String/false used by encoder, if false there's no conversion
     def initialize(options = {})
       @dicts = {}
       @google, @strict  = [ false, false ]
       @data = {}
 
-      @agent = options[:user_agent] if options.include? :user_agent
-      @strict = options[:strict] if options.include? :strict
-      if options.include? :load
-        options = load_config_file(options[:load]) || {}
-        options.symbolize_keys!
-      end
-      set_google_with(options[:google]) if options.include? :google
-      @dicts = options[:dicts].symbolize_keys! if options.include? :dicts
+      reset_options_with options
     end
 
     # Process the translation of the text from language src to language dst
@@ -77,7 +71,33 @@ module ParrotTn
       @google
     end
 
-    # @param [Boolean] val is true if google should be used otherwise false
+    # Reset options used in constructor to new value
+    #
+    # @param [Hash] options contains options defined in constructor
+    def reset_options_with(options)
+      set_agent_with(options[:user_agent]) if options.include? :user_agent
+      @strict = options[:strict] if options.include? :strict
+      if options.include? :load
+        options = load_config_file(options[:load]) || {}
+        options.symbolize_keys!
+      end
+      set_google_with(options[:google]) if options.include? :google
+      @dicts = options[:dicts].symbolize_keys! if options.include? :dicts
+    end
+
+
+    private
+
+    def set_agent_with(val)
+      if @agent != val
+        @agent = val
+        unless @tr.nil?
+          @tr = nil
+          set_google_with(@agent)
+        end
+      end
+    end
+
     def set_google_with(val)
       @google = val
       if val && @tr.nil?
@@ -90,8 +110,6 @@ module ParrotTn
         end
       end
     end
-
-    private
 
     def load_dictionnary(name)
       filename = "#{@dir_dict}/#{name}.yml"

@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     parrot_tn (0.1.0)
+      mechanize
 
 GEM
   remote: https://rubygems.org/
@@ -102,7 +103,6 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
-  mechanize
   parrot_tn!
   pry
   rspec-rails

@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
 
   s.homepage    =
     'http://rubygems.org/gems/parrot_tn'
+
+  s.add_dependency "mechanize"
 end

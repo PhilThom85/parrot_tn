@@ -78,7 +78,7 @@ describe ParrotTn::Guess do
           @guess = subject.class.new  :load => "./spec/lib/samples/real_config.yml"
         end
         it "should not call google and return NT - msg" do
-          @guess.set_google_with false
+          @guess.reset_options_with :google => false
 
           @guess.translation("harrowing", :en, :fr).should == "NT - harrowing"
         end
@@ -88,6 +88,18 @@ describe ParrotTn::Guess do
 
         it "should fail to translate with google and fallback with NT -" do
           @guess.translation("thisntacorectword", :en, :fr).should == "NT - thisntacorectword"
+        end
+      end
+
+      describe "when object is defined" do
+        it "should be possible to change options" do
+          guess = subject.class.new  :load => "./spec/lib/samples/real_config.yml"
+
+          guess.reset_options_with :google => false, :strict => true, :user_agent => false
+
+          guess.google?.should be_false
+          guess.instance_variable_get("@strict").should be_true
+          guess.instance_variable_get("@agent").should be_false
         end
       end
     end
