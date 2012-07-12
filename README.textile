@@ -76,10 +76,32 @@ fr:
 
 </ruby>
 
+h3. Local dictionnaries
+
+These are dictionnaries that are used to hook the google translation. Some words can be bad translated by google,
+or need another mean, so it can be possible to define these words with local dicts.
+The name and structure of local dictionnary must be defined as :
+
+name : {src_lg}_{dst_lg}_dict_{name}.yml
+where:
+  # src_lg: source language (en)
+  # dst_lg: destination language (fr)
+  # name: Dict name (gen)
+
+and inside the file:
+
+<ruby>
+en_fr:
+  "House": "Maison"
+  ...
+</ruby>
+
 h2. Next releases
 
 Here is the list of new features planned to be included:
 
 # Database table conversion
 # translate messages with '#{}' within the text
+# use local dicts from command line
+# translate partial word in sentence using local dicts
 
