@@ -161,7 +161,7 @@ And the following code:
 #
 #
 # Activate auto translator with ParrotTn
-::I18n::Backend::Base.send(:include, CielOneHost::Mixins::I18n::Backend::Base)
+::I18n::Backend::Base.send(:include, Mixins::I18n::Backend::Base)
 
 # Define language to display
 $display_in_lang = (ENV["RAILSDISPLG"] || "fr").to_sym
@@ -180,5 +180,6 @@ export RAILSDISPLG=es
 bundle exec rails s
 </code></pre>
 
-NOTE: The translation may not be obviously perfect but this why there are some local dictionaries and it's a first preview of the website before translation.
+NOTE: The translation may not be obviously perfect but this is why there are some local dictionaries and
+the purpose is to have a first preview of the website before real translation.
 
