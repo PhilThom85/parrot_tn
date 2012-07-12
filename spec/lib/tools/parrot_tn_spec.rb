@@ -33,8 +33,8 @@ describe ParrotTn::Guess do
     end
 
     describe "strict option" do
-      it "should not return NT - when no translation if set to true" do
-        @guess = subject.class.new  :google => false, :strict => true
+      it "should not return NT - when no translation is found" do
+        @guess = subject.class.new  :google => false, :strict => false
 
         @guess.translation_of("harrowing", :from => :en, :to => :fr).should_not == "NT - harrowing"
         @guess.translation_of("harrowing", :from => :en, :to => :fr).should == "harrowing"
@@ -95,10 +95,10 @@ describe ParrotTn::Guess do
         it "should be possible to change options" do
           guess = subject.class.new  :load => "./spec/lib/samples/real_config.yml"
 
-          guess.reset_options_with :google => false, :strict => true, :user_agent => false
+          guess.reset_options_with :google => false, :strict => false, :user_agent => false
 
           guess.google?.should be_false
-          guess.instance_variable_get("@strict").should be_true
+          guess.instance_variable_get("@strict").should be_false
           guess.instance_variable_get("@agent").should be_false
         end
       end

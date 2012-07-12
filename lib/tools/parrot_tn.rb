@@ -18,13 +18,13 @@ module ParrotTn
     #
     # @param [Hash] options contains keys:
     #   - :google : true/(false), if true use google translator by default
-    #   - :strict : true/(false), if true does not return prefix "NT -" into result string
+    #   - :strict : (true)/false, if false does not return prefix "NT -" into result string
     #   - :dicts  : Hash that contains the list of file dictionnaries
     #   - :load   : String path to a config file
     #   - :user_agent   : String/false used by encoder, if false there's no conversion
     def initialize(options = {})
       @dicts = {}
-      @google, @strict  = [ false, false ]
+      @google, @strict  = [ false, true ]
       @data = {}
 
       reset_options_with options
@@ -64,7 +64,7 @@ module ParrotTn
       end
       if tn.nil? || tn.empty? || tn == text
         tn = text
-        unless @strict
+        if @strict
           tn = "NT - #{text}"
         end
       end
