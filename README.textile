@@ -105,3 +105,80 @@ Here is the list of new features planned to be included:
 # use local dicts from command line
 # translate partial word in sentence using local dicts
 
+h2. Tips
+
+(for fun)
+If you want to use ParrotTn to translate your rails application using google without effort, follow the steps:
+
+h3. Add code to ::I18n object
+
+<ruby>
+module Mixins
+  module I18n
+    module Backend
+      module Base
+        extend ActiveSupport::Concern
+
+        included do
+          normal_translate = instance_method(:translate)
+
+          define_method(:translate) do |locale, key, options = {} |
+            ext_translate(normal_translate, locale, key, options)
+          end
+        end
+
+        def ext_translate(normal_translate, locale, key, options = {} )
+          entry = normal_translate.bind(self).(locale, key, options)
+
+          print key, " : ", entry, " --> "
+          if $parrot && !entry.empty? && !key.to_s.start_with?('date.formats.')
+            new_entry = $parrot.translation_of entry, :from => locale, :to => $display_in_lang
+            entry = new_entry unless new_entry.nil? or new_entry.empty?
+          end
+          puts entry
+          entry
+        end
+      end
+    end
+  end
+end
+</ruby>
+
+h3. Include in object
+
+Add this mixins into the ::I18n module
+
+<ruby>
+  ::I18n::Backend::Base.send(:include, Mixins::I18n::Backend::Base)
+</ruby>
+
+h3. Add a new initializer
+
+And the following code:
+
+<ruby>
+# Parrot Translator
+#
+#
+# Activate auto translator with ParrotTn
+::I18n::Backend::Base.send(:include, CielOneHost::Mixins::I18n::Backend::Base)
+
+# Define language to display
+$display_in_lang = (ENV["RAILSDISPLG"] || "fr").to_sym
+
+# Initialize Parrot Translation
+$parrot = ParrotTn::Guess.new :google => true, :user_agent => false, :strict => false
+
+</ruby>
+
+h3. Conclusion
+
+Let's try to display you website in any language you define in environment variable :
+
+<shell>
+export RAILSDISPLG=es
+bundle exec rails s
+</shell>
+
+NOTE: The translation may not be obviously perfect but this why there are some local dictionaries and it's a first preview of the website before translation.
+
