@@ -64,7 +64,7 @@ module ParrotTn
       elsif h.is_a? String
         result = ""
         if not h.empty?
-          result = @guess.translation h, @lgstart, @lgdest
+          result = @guess.translation_of h, :from => @lgstart, :to => @lgdest
         end
       else
         result = h

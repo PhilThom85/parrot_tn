@@ -387,7 +387,9 @@
 71
 72
 73
-74</pre>
+74
+75
+76</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/google/google_translate.rb', line 46</span>
@@ -416,9 +418,11 @@
 
   <span class='kw'>return</span> <span class='kw'>case</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_user_agent'>user_agent</span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>mechanize</span><span class='regexp_end'>/i</span></span>
-     <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_encode!'>encode!</span><span class='lparen'>(</span><span class='const'>LANG</span><span class='lbracket'>[</span><span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:out</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>LANG</span><span class='lbracket'>[</span><span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:in</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_encode!'>encode!</span><span class='lparen'>(</span><span class='const'>LANG</span><span class='lbracket'>[</span><span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:out</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='const'>LANG</span><span class='lbracket'>[</span><span class='id identifier rubyid_to'>to</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='symbol'>:in</span><span class='rbracket'>]</span><span class='rparen'>)</span>
     <span class='kw'>when</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[^www]</span><span class='regexp_end'>/i</span></span>
-     <span class='id identifier rubyid_result'>result</span>
+      <span class='id identifier rubyid_result'>result</span>
+    <span class='kw'>when</span> <span class='kw'>false</span>
+      <span class='id identifier rubyid_result'>result</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -431,7 +435,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Jul 11 14:52:51 2012 by
+  Generated on Thu Jul 12 09:39:23 2012 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.2.1 (ruby-1.9.3).
 </div>

@@ -36,8 +36,8 @@ describe ParrotTn::Guess do
       it "should not return NT - when no translation if set to true" do
         @guess = subject.class.new  :google => false, :strict => true
 
-        @guess.translation("harrowing", :en, :fr).should_not == "NT - harrowing"
-        @guess.translation("harrowing", :en, :fr).should == "harrowing"
+        @guess.translation_of("harrowing", :from => :en, :to => :fr).should_not == "NT - harrowing"
+        @guess.translation_of("harrowing", :from => :en, :to => :fr).should == "harrowing"
       end
     end
   end
@@ -63,13 +63,13 @@ describe ParrotTn::Guess do
         end
 
         it "should have translation from english to french" do
-          @guess.translation("House", :en, :fr).should == "Maison"
+          @guess.translation_of("House", :from => :en, :to => :fr).should == "Maison"
         end
         it "should have translation from french to english" do
-          @guess.translation("Chien", :fr, :en).should == "Dog"
+          @guess.translation_of("Chien", :from => :fr, :to => :en).should == "Dog"
         end
         it "should have special translation from en to fr" do
-          @guess.translation("Tip", :en, :fr).should == "Tuyau"
+          @guess.translation_of("Tip", :from => :en, :to => :fr).should == "Tuyau"
         end
       end
 
@@ -80,14 +80,14 @@ describe ParrotTn::Guess do
         it "should not call google and return NT - msg" do
           @guess.reset_options_with :google => false
 
-          @guess.translation("harrowing", :en, :fr).should == "NT - harrowing"
+          @guess.translation_of("harrowing", :from => :en, :to => :fr).should == "NT - harrowing"
         end
         it "should call google and return translated msg" do
-          @guess.translation("harrowing", :en, :fr).should == "hersage"
+          @guess.translation_of("harrowing", :from => :en, :to => :fr).should == "hersage"
         end
 
         it "should fail to translate with google and fallback with NT -" do
-          @guess.translation("thisntacorectword", :en, :fr).should == "NT - thisntacorectword"
+          @guess.translation_of("thisntacorectword", :from => :en, :to => :fr).should == "NT - thisntacorectword"
         end
       end
 

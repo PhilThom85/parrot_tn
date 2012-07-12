@@ -33,10 +33,15 @@ module ParrotTn
     # Process the translation of the text from language src to language dst
     #
     # @param [String] text to translate
-    # @param [Symbol] src language
-    # @param [Symbol] dst language
+    # @param [Hash] options
+    #   - :from : src language
+    #   - :to   : dst language
     # @return [String] the translated text
-    def translation(text, src, dst)
+    def translation_of(text, options)
+      src = options[:from]
+      dst = options[:to]
+      raise ":from and :to are mandatory in method translation_of" if src.nil? || dst.nil?
+
       diconame = "#{src}_#{dst}".to_sym
       dico = @dicts[diconame]
       if dico.is_a? String

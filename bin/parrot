@@ -6,7 +6,7 @@ begin
   guess = ParrotTn::Guess.new :google => true, :user_agent => false
   text = ARGV[0]
   lgsrc, lgdst = ARGV[1].split(':')
-  puts guess.translation text, lgsrc, lgdst
+  puts guess.translation_of text, :from => lgsrc, :to => lgdst
 rescue Exception => e
   puts e.message
   exit 1

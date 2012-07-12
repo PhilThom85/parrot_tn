@@ -1,6 +1,9 @@
 h1. ParrotTn
 
-This utility gem enables to translate from local dictionnaries and/or google translator
+This utility gem enables to translate from local dictionnaries and/or google translator.
+
+Another feature is to translate a yml file, usually an i18n file, into another yaml file with the
+same hierarchy.
 
 h2. Installation
 
@@ -12,5 +15,71 @@ h2. Usage
 
 h3. Command line
 
+In order to translate a text with the help of google translate :
+
+<shell>
+bundle exec parrot "My text to translate" en:fr
+</shell>
+
+where:
+en is source language and fr is destination language
+
 h3. Ruby code
+
+h4. Standard use
+
+This is used to translate a text to another with or without google translation
+
+<ruby>
+#...
+  guess = ParrotTn::Guess.new :google => true
+  puts guess.translation_of "My text to translate", :from => :en, :to => :fr
+#...
+</ruby>
+
+h4. Convert yaml file
+
+To convert a yaml file, use :
+
+<ruby>
+  parser = ParrotTn::ParserYml.new :google => true
+  parser.parrotize_yaml "path_to_file", :fr
+</ruby>
+
+The resulting file is saved to the current directory but can be changed using :save_to option.
+The source file must start with the code language as root, as shown below:
+
+<ruby>
+en:
+  ...
+</ruby>
+
+Usually the file is an i18n file :
+
+<ruby>
+en:
+  code_a: "House"
+  code_b:
+    - "Monday"
+    - "Tuesday"
+
+</ruby>
+
+will be converted to french for instance, as shown bellow:
+
+<ruby>
+fr:
+  code_a: "Maison"
+  code_b:
+    - "Lundi"
+    - "Mardi"
+
+</ruby>
+
+h2. Next releases
+
+Here is the list of new features planned to be included:
+
+# Database table conversion
+# translate messages with '#{}' within the text
 
